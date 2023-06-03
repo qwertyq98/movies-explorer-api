@@ -5,6 +5,12 @@ const {
 } = require('mongoose').Error;
 
 const BaseError = require('../errors/BaseError');
+const {
+  VALIDATION_ERROR_MESSAGE,
+  USER_BAD_ID_MESSAGE,
+  SIGNUP_CONFLICT_MESSAGE,
+  SERVER_ERROR_MESSAGE,
+} = require('./constants');
 
 function errorHandler(err, req, res, next) {
   if (err instanceof BaseError) {
@@ -13,7 +19,7 @@ function errorHandler(err, req, res, next) {
 
   if (err instanceof ValidationError) {
     return res.status(400).send({
-      message: 'Переданы некорректные данные',
+      message: VALIDATION_ERROR_MESSAGE,
     });
   }
 
@@ -25,17 +31,17 @@ function errorHandler(err, req, res, next) {
 
   if (err instanceof CastError) {
     return res.status(400).send({
-      message: 'Передан невалидный ID',
+      message: USER_BAD_ID_MESSAGE,
     });
   }
 
   if (err.code === 11000) {
     return res.status(409).send({
-      message: 'Указанный email уже зарегистрирован',
+      message: SIGNUP_CONFLICT_MESSAGE,
     });
   }
 
-  res.status(500).send('Ошибка на сервере');
+  res.status(500).send(SERVER_ERROR_MESSAGE);
   return next();
 }
 

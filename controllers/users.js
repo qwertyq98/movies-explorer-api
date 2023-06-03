@@ -4,13 +4,17 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../errors/NotFoundError');
 const { DEV_KEY, PRODUCTION } = require('../utils/config');
+const {
+  USER_NOT_FOUND_MESSAGE,
+  SIGNOUT_MESSAGE,
+} = require('../utils/constants');
 
 module.exports.getUserMeById = (req, res, next) => {
   const userId = req.user._id;
 
   User.findById(userId)
     .orFail(() => {
-      throw new NotFoundError('Пользователь не существует');
+      throw new NotFoundError(USER_NOT_FOUND_MESSAGE);
     })
     .then((user) => res.status(200).send({ data: user }))
     .catch(next);
@@ -22,7 +26,7 @@ module.exports.updateUser = (req, res, next) => {
 
   User.findByIdAndUpdate(userId, { email, name }, { new: true, runValidators: true })
     .orFail(() => {
-      throw new NotFoundError('Пользователь не существует');
+      throw new NotFoundError(USER_NOT_FOUND_MESSAGE);
     })
     .then((user) => res.status(200).send({ data: user }))
     .catch(next);
@@ -70,5 +74,5 @@ module.exports.logout = (req, res) => {
       httpOnly: true,
       sameSite: true,
     })
-    .send({ data: 'Осуществлен выход из учетной записи' });
+    .send({ data: SIGNOUT_MESSAGE });
 };
