@@ -52,7 +52,8 @@ module.exports.createUser = (req, res, next) => {
           maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
           sameSite: 'none',
-          secure: false,
+          domain: 'http://movies-kapustina.nomoreparties.sbs',
+          secure: true,
         })
         .status(201)
         .send({ data: email })
@@ -76,7 +77,8 @@ module.exports.login = (req, res, next) => {
           maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
           sameSite: 'none',
-          secure: false,
+          domain: 'http://movies-kapustina.nomoreparties.sbs',
+          secure: true,
         })
         .send({ data: email })
         .end();
@@ -90,7 +92,8 @@ module.exports.logout = (req, res) => {
       maxAge: 0,
       httpOnly: true,
       sameSite: 'none',
-      secure: false,
+      domain: 'http://movies-kapustina.nomoreparties.sbs',
+      secure: true,
     })
     .send({ data: SIGNOUT_MESSAGE });
 };
