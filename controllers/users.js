@@ -53,7 +53,7 @@ module.exports.createUser = (req, res, next) => {
           httpOnly: true,
           sameSite: 'none',
           domain: 'http://movies-kapustina.nomoreparties.sbs',
-          secure: true,
+          secure: false,
         })
         .status(201)
         .send({ data: email })
@@ -78,7 +78,7 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           sameSite: 'none',
           domain: 'http://movies-kapustina.nomoreparties.sbs',
-          secure: true,
+          secure: false,
         })
         .send({ data: email })
         .end();
@@ -93,7 +93,7 @@ module.exports.logout = (req, res) => {
       httpOnly: true,
       sameSite: 'none',
       domain: 'http://movies-kapustina.nomoreparties.sbs',
-      secure: true,
+      secure: false,
     })
     .send({ data: SIGNOUT_MESSAGE });
 };
