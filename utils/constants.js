@@ -14,8 +14,8 @@ const SIGNUP_CONFLICT_MESSAGE = 'Указанный email уже зарегис�
 const SERVER_ERROR_MESSAGE = 'Ошибка на сервере';
 
 const ALLOWED_CORS = [
-  'http://movies-kapustina.nomoredomains.rocks',
-  'https://movies-kapustina.nomoredomains.rocks',
+  'http://movies-kapustina.nomoreparties.sbs/',
+  'https://movies-kapustina.nomoreparties.sbs/',
   'https://localhost:3000',
   'http://localhost:3000',
   'https://localhost:3001',
