@@ -21,6 +21,6 @@
 
 ## Ссылки на проект
 
-IP 158.160.61.104
+IP 158.160.101.20
 
 Backend https://api.movies-kapustina.nomoredomains.rocks
