@@ -51,7 +51,7 @@ module.exports.createUser = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
-          sameSite: false,
+          sameSite: 'none',
         })
         .status(201)
         .send({ data: email })
@@ -74,7 +74,7 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
-          sameSite: false,
+          sameSite: 'none',
         })
         .send({ data: email })
         .end();
@@ -87,7 +87,7 @@ module.exports.logout = (req, res) => {
     .cookie('jwt', '', {
       maxAge: 0,
       httpOnly: true,
-      sameSite: false,
+      sameSite: 'none',
     })
     .send({ data: SIGNOUT_MESSAGE });
 };
