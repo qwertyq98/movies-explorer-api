@@ -52,10 +52,10 @@ const movieSchema = new mongoose.Schema({
     ref: 'user',
     required: [true, 'Укажите пользователя'],
   },
-  movieId: [{
+  movieId: {
     type: Number,
     required: [true, 'Укажите id фильма'],
-  }],
+  },
   nameRU: {
     type: String,
     required: [true, 'Укажите фильма на русском языке'],
